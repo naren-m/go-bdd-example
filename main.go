@@ -6,29 +6,15 @@ import (
 	"os"
 
 	"github.com/google/go-github/github"
-	"golang.org/x/oauth2"
+	"github.com/naren-m/go-bdd-example/services"
 )
-
-// Model
-type Package struct {
-	FullName      string
-	Description   string
-	StarsCount    int
-	ForksCount    int
-	LastUpdatedBy string
-}
 
 func main() {
 	ctx := context.Background()
-	ts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: "1161bc4a9c064328d5693421207ae717c129ffec"},
-	)
+	client := github.NewClient(nil)
 
-	tc := oauth2.NewClient(ctx, ts)
-	// get go-github client
-	client := github.NewClient(tc)
-
-	repo, _, err := client.Repositories.Get(ctx, "Golang-Coach", "Lessons")
+	githubAPI := services.NewGithub(ctx, client.Repositories)
+	repo, err := githubAPI.GetPackageRepoInfo("Golang-Coach", "Lessons")
 	//	repo, _, err := client.Repositories.Get(ctx, "naren-m", "dotfiles")
 
 	if err != nil {
@@ -36,13 +22,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	pack := &Package{
-		FullName:    *repo.FullName,
-		Description: *repo.Description,
-		ForksCount:  *repo.ForksCount,
-		StarsCount:  *repo.StargazersCount,
-	}
-
-	fmt.Printf("%+v\n", pack)
+	fmt.Printf("%+v\n", repo)
 
 }

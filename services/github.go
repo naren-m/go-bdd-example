@@ -32,7 +32,7 @@ type Github struct {
 }
 
 // NewGithub : It will intialized Github class
-func NewGithub(context context.Context, repositoryServices *github.RepositoriesService) Github {
+func NewGithub(context context.Context, repositoryServices IRepositoryServices) Github {
 	return Github{
 		repositoryServices: repositoryServices,
 		context:            context,

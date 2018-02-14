@@ -1,4 +1,4 @@
-# Sample project for Behaviou-driven development and Continous Integration
+# Sample project for Behavior-driven development and Continuos Integration
 
 ## References
 - [Code from Golang-Coach lessons](https://github.com/Golang-Coach/Lessons/tree/master/GoBDD)

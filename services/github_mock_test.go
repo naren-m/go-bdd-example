@@ -33,7 +33,7 @@ func TestGithubAPI(t *testing.T) {
 		So(pack.ForksCount, ShouldEqual, starCount)
 	})
 
-	Convey("Should return error when failed to retrieve repository information", t, func() {
+	Convey("Should return error when failed to retrieve  repository information", t, func() {
 		backgroundContext := context.Background()
 		repositoryServices := new(mocks.IRepositoryServices)
 		github := NewGithub(backgroundContext, repositoryServices)
